@@ -5,6 +5,8 @@ var canvasHeight = canvas.height;
 var fps = 1000/30;
 var playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 var holdLeft=holdRight=holdJump=holdDown= false;
+var gravity = .05;
+var playerXVelocity=playerYVelocity = 0;
 
 window.onload = function(){
     setInterval(update, 1000/30);
@@ -51,8 +53,19 @@ function keyDown(evt) {
     }
 }
 
+function playerMove() {
+    if(holdLeft) {
+        playerXVelocity = -2;
+    }
+    if(holdRight) {
+        playerXVelocity = 2;
+    }
+    playerX += playerXVelocity;
+}
+
 function update(){
     drawRect(0,0, canvasWidth, canvasHeight, 'black');
     drawRect(playerX, playerY, 10, 20, 'white');
-    drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
+    playerMove();
+    var platform = drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
 }
