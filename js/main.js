@@ -1,12 +1,13 @@
-var canvas = document.getElementById("game");
-var canvasContext = canvas.getContext('2d');
-var canvasWidth = canvas.width;
-var canvasHeight = canvas.height;
-var fps = 1000/30;
-var playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
-var holdLeft=holdRight=holdJump=holdDown= false;
-var gravity = .05;
-var playerXVelocity=playerYVelocity = 0;
+let canvas = document.getElementById("game");
+let canvasContext = canvas.getContext('2d');
+let canvasWidth = canvas.width;
+let canvasHeight = canvas.height;
+let fps = 1000/30;
+let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
+let holdLeft=holdRight=holdJump=holdDown= false;
+let gravity = .05;
+let playerXVelocity=playerYVelocity = 0;
+let onGround 
 
 window.onload = function(){
     setInterval(update, 1000/30);
@@ -63,9 +64,17 @@ function playerMove() {
     playerX += playerXVelocity;
 }
 
-function update(){
-    drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    drawRect(playerX, playerY, 10, 20, 'white');
+function drawAll() {
+    let background = new drawRect(0,0, canvasWidth, canvasHeight, 'black');
+    let player = new drawRect(playerX, playerY, 10, 20, 'white');
+    let platform = new drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
+}
+
+function moveAll() {
     playerMove();
-    var platform = drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
+}
+
+function update(){
+    drawAll();
+    moveAll();
 }
