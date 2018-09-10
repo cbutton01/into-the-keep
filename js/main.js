@@ -7,9 +7,9 @@ var playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 var holdLeft=holdRight=holdJump=holdDown= false;
 
 window.onload = function(){
-    setInterval(update(), fps);
-    document.addEventListener("keyup", keyUp());
-    document.addEventListener("keydown", keyDown());
+    setInterval(update, 1000/30);
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
 }
 
 function drawRect(startX, startY, width, height, color ) {
@@ -54,6 +54,5 @@ function keyDown(evt) {
 function update(){
     drawRect(0,0, canvasWidth, canvasHeight, 'black');
     drawRect(playerX, playerY, 10, 20, 'white');
-    console.log(holdLeft);
-    
+    drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
 }
