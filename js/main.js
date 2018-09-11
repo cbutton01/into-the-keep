@@ -5,7 +5,7 @@ let canvasHeight = canvas.height;
 let fps = 1000/30;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 let holdLeft=holdRight=holdJump=holdDown= false;
-let gravity = .05;
+let gravity = .5;
 let playerXVelocity=playerYVelocity = 0;
 let onGround 
 
@@ -56,6 +56,22 @@ function keyDown(evt) {
 
 function playerMove() {
 
+    
+}
+
+function drawAll() {
+    
+}
+
+function moveAll() {
+    playerMove();
+}
+
+function update(){
+    let background = new drawRect(0,0, canvasWidth, canvasHeight, 'black');
+    let player = new drawRect(playerX - 5, playerY - 20, 10, 20, 'white');
+    let platform = new drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
+
     if(playerY >= platform.y) {
         onGround = true;
     } else {
@@ -74,19 +90,4 @@ function playerMove() {
     } else {
         playerYVelocity += gravity;
     }
-}
-
-function drawAll() {
-    let background = new drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new drawRect(playerX - 5, playerY - 20, 10, 20, 'white');
-    let platform = new drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
-}
-
-function moveAll() {
-    playerMove();
-}
-
-function update(){
-    drawAll();
-    moveAll();
 }
