@@ -15,9 +15,9 @@ window.onload = function(){
     document.addEventListener("keyup", keyUp);
 }
 
-function drawRect(startX, startY, width, height, color ) {
+function drawRect(x, y, width, height, color ) {
     canvasContext.fillStyle = color;
-    canvasContext.fillRect(startX, startY, width, height);
+    canvasContext.fillRect(x, y, width, height);
 }
 
 function keyUp(evt) {
@@ -44,17 +44,24 @@ function keyDown(evt) {
             break;
         case 38:
             holdJump = true;
+                if(onGround){
+                    playerYVelocity = -10;
+                }
             break;
         case 39:
             holdRight = true;
-            break;
-        case 40:
-            holdDown = true;
             break;
     }
 }
 
 function playerMove() {
+
+    if(playerY >= platform.y) {
+        onGround = true;
+    } else {
+        playerYVelocity += gravity;
+    }
+
     if(holdLeft) {
         playerXVelocity = -2;
     }
@@ -62,11 +69,16 @@ function playerMove() {
         playerXVelocity = 2;
     }
     playerX += playerXVelocity;
+    if(onGround) {
+        playerXVelocity *= .8;
+    } else {
+        playerYVelocity += gravity;
+    }
 }
 
 function drawAll() {
     let background = new drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new drawRect(playerX, playerY, 10, 20, 'white');
+    let player = new drawRect(playerX - 5, playerY - 20, 10, 20, 'white');
     let platform = new drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
 }
 
