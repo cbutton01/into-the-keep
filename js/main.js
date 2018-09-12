@@ -1,13 +1,15 @@
 let canvas = document.getElementById("game");
 let canvasContext = canvas.getContext('2d');
-let canvasWidth = canvas.width;
-let canvasHeight = canvas.height;
+let canvasWidth = canvas.width = window.innerWidth;
+let canvasHeight = canvas.height = window.innerHeight;
 let fps = 1000/30;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 let holdLeft=holdRight=holdJump=holdDown= false;
 let gravity = .5;
 let playerXVelocity=playerYVelocity = 0;
-let onGround 
+let onGround = false;
+
+
 
 window.onload = function(){
     setInterval(update, 1000/30);
