@@ -12,12 +12,17 @@ let onGround = false;
 
 
 window.onload = function(){
-    setInterval(update, 1000/30);
+    animate();
     document.addEventListener("keydown", keyDown);
     document.addEventListener("keyup", keyUp);
 }
 
-function drawRect(x, y, width, height, color ) {
+function animate() {
+    requestAnimationFrame(animate);
+    update();
+}
+
+function DrawRect(x, y, width, height, color ) {
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, width, height);
 }
@@ -43,6 +48,7 @@ function keyDown(evt) {
     switch(evt.keyCode) {
         case 37:
             holdLeft = true;
+                playerXVelocity = -3;
             break;
         case 38:
             holdJump = true;
@@ -52,44 +58,31 @@ function keyDown(evt) {
             break;
         case 39:
             holdRight = true;
+            playerXVelocity = 3;
             break;
     }
 }
 
-function playerMove() {
 
-    
-}
-
-function drawAll() {
-    
-}
-
-function moveAll() {
-    playerMove();
-}
 
 function update(){
-    let background = new drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new drawRect(playerX - 5, playerY - 20, 10, 20, 'white');
-    let platform = new drawRect(0, canvasHeight - 20, canvasWidth, 20, 'green');
+    canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
+    let background = new DrawRect(0,0, canvasWidth, canvasHeight, 'black');
+    let player = new DrawRect(playerX - 5, playerY - 20, 10, 20, 'white');
 
-    if(playerY >= platform.y) {
-        onGround = true;
-    } else {
-        playerYVelocity += gravity;
-    }
 
     if(holdLeft) {
-        playerXVelocity = -2;
-    }
-    if(holdRight) {
-        playerXVelocity = 2;
-    }
-    playerX += playerXVelocity;
-    if(onGround) {
-        playerXVelocity *= .8;
+        playerX += playerXVelocity;
+    } else if (holdRight) {
+        playerX += playerXVelocity;
     } else {
-        playerYVelocity += gravity;
+        playerXVelocity = 0;
     }
+
+    if(playerY >= canvasHeight) {
+        playerY += gravity;
+    } else {
+        onGround = true;
+    }
+    
 }
