@@ -10,7 +10,7 @@ let playerSpeedY = 0;
 
 window.onload = function(){
     animate();
-    // document.addEventListener("keydown", keyDown);
+    document.addEventListener("keydown", keyDown);
     // document.addEventListener("keyup", keyUp);
 }
 
@@ -24,50 +24,11 @@ function DrawRect(x, y, width, height, color ) {
     canvasContext.fillRect(x, y, width, height);
 }
 
-
-// function keyDown(evt) {
-//     switch(evt.keyCode) {
-//         case 37:
-//             holdLeft = true;
-//                 playerXVelocity = -3;
-//                 console.log('moving left');
-                
-//             break;
-//         case 38:
-//             holdJump = true;
-//                 if(onGround){
-//                     playerYVelocity = -10;
-//                 }
-//             console.log('jumping');
-//             break;
-//         case 39:
-//             holdRight = true;
-//             playerXVelocity = 3;
-//             console.log('moving right');
-//             break;
-//     }
-// }
-
-// function keyUp(evt) {
-//     switch(evt.keyCode) {
-//         case 37:
-//             holdLeft = false;
-//             break;
-//         case 38:
-//             holdJump = false;
-//             if(!onGround){
-//                 playerYVelocity += gravity;
-//                 console.log('falling!');
-//             }
-//             break;
-//         case 39:
-//             holdRight = false;
-//             break;
-//         case 40:
-//             holdDown = false;
-//             break;
-//     }
-// }
+function keyDown(evt){
+    evt.preventDefault();
+    console.log(evt.keyCode);
+    
+}
 
 class Player {
     constructor() {
@@ -94,5 +55,5 @@ function update(){
     let background = new DrawRect(0,0, canvasWidth, canvasHeight, 'black');
     let player = new Player();
     player.draw();
-    
+
 }
