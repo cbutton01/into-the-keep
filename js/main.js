@@ -3,21 +3,14 @@ let canvasContext = canvas.getContext('2d');
 let canvasWidth = canvas.width = 800;
 let canvasHeight = canvas.height = 600;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
-let playerSpeedX = 0;
-let playerSpeedY = 0;
 let moveLeft = moveRight = jump = false;
 
 
 
 window.onload = function(){
-    animate();
+    update();
     document.addEventListener("keydown", keyDown);
     document.addEventListener("keyup", keyUp);
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    update();
 }
 
 function DrawRect(x, y, width, height, color ) {
@@ -27,9 +20,11 @@ function DrawRect(x, y, width, height, color ) {
 
 function keyDown(evt){
     let keyPos = evt.key;
-    console.log(keyPos);
-    if(keyPos = 'a') {
+    if(keyPos == 'a') {
         moveLeft = true;
+    }
+    if(keyPos == 'd'){
+        moveRight = true;
     }
     
     
@@ -37,15 +32,18 @@ function keyDown(evt){
 
 function keyUp(evt){
     let keyPos = evt.key;
-    if(keyPos = 65){
+    if(keyPos == 'a'){
         moveLeft = false;
+    }
+    if(keyPos == 'd'){
+        moveRight = false;
     }
 }
 
 class Player {
-    constructor() {
-        this.x = playerX;
-        this.y = playerY;
+    constructor(x, y, playerSpeedX, playerSpeedY) {
+        this.x = x;
+        this.y = y;
         this.speedX = playerSpeedX;
         this.speedY = playerSpeedY;
         this.width = 10;
@@ -55,11 +53,13 @@ class Player {
         }
         this.move = function(){
             if(moveLeft){
-                console.log(moveLeft);
-                
                 this.speedX = -3;
+            } else if(moveRight) {
+                this.speedX = 3;
+            } else {
+                this.speedX = 0;
             }
-
+            
             this.x += this.speedX;
         }
     }
@@ -68,8 +68,8 @@ class Player {
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     let background = new DrawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new Player();
+    let player = new Player(400 - 5, 300 - 10, 0, 0 );
     player.draw();
     player.move();
-
+    requestAnimationFrame(update);
 }
