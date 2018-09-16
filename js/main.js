@@ -13,7 +13,7 @@ window.onload = function(){
     document.addEventListener("keyup", keyUp);
 }
 
-function DrawRect(x, y, width, height, color ) {
+function drawRect(x, y, width, height, color ) {
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, width, height);
 }
@@ -49,9 +49,10 @@ class Player {
         this.width = 10;
         this.height = 20;
         this.draw = function(){
-            DrawRect(this.x, this.y, this.width, this.height, 'white');
+            drawRect(this.x, this.y, this.width, this.height, 'white');
         }
         this.move = function(){
+            // debugger
             if(moveLeft){
                 this.speedX = -3;
             } else if(moveRight) {
@@ -67,7 +68,7 @@ class Player {
 
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
-    let background = new DrawRect(0,0, canvasWidth, canvasHeight, 'black');
+    drawRect(0,0, canvasWidth, canvasHeight, 'black');
     let player = new Player(400 - 5, 300 - 10, 0, 0 );
     player.draw();
     player.move();
