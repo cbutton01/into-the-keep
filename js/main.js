@@ -27,22 +27,6 @@ function DrawRect(x, y, width, height, color ) {
     canvasContext.fillRect(x, y, width, height);
 }
 
-function keyUp(evt) {
-    switch(evt.keyCode) {
-        case 37:
-            holdLeft = false;
-            break;
-        case 38:
-            holdJump = false;
-            break;
-        case 39:
-            holdRight = false;
-            break;
-        case 40:
-            holdDown = false;
-            break;
-    }
-}
 
 function keyDown(evt) {
     switch(evt.keyCode) {
@@ -63,26 +47,54 @@ function keyDown(evt) {
     }
 }
 
+function keyUp(evt) {
+    switch(evt.keyCode) {
+        case 37:
+            holdLeft = false;
+            break;
+        case 38:
+            holdJump = false;
+            if(!onGround){
+                playerYVelocity += gravity;
+            }
+            break;
+        case 39:
+            holdRight = false;
+            break;
+        case 40:
+            holdDown = false;
+            break;
+    }
+}
 
+class Player {
+    constructor() {
+        DrawRect(playerX - 5, playerY - 20, 10, 20, 'white');
+        this.move = function () {
+            if (holdLeft) {
+                playerX += playerXVelocity;
+            }
+            else if (holdRight) {
+                playerX += playerXVelocity;
+            }
+            else {
+                playerXVelocity = 0;
+            }
+            if(playerY >= canvasHeight) {
+                onGround = true;
+                playerYVelocity = 0;
+                playerY += playerYVelocity;
+            } else {
+                onGround = false;
+                playerY += playerYVelocity;
+            }
+        }
+    }
+}
 
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     let background = new DrawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new DrawRect(playerX - 5, playerY - 20, 10, 20, 'white');
-
-
-    if(holdLeft) {
-        playerX += playerXVelocity;
-    } else if (holdRight) {
-        playerX += playerXVelocity;
-    } else {
-        playerXVelocity = 0;
-    }
-
-    if(playerY <= canvasHeight) {
-        playerY += gravity;
-    } else {
-        onGround = true;
-    }
-    
+    let player = new Player();
+    player.move();    
 }
