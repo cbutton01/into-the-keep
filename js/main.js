@@ -27,7 +27,7 @@ function keyDown(evt){
     if(keyPos == 'd'){
         moveRight = true;
     }
-    if(keyPos == 'w'){
+    if(keyPos == 'w' && onGround){
         jump = true;
     }
     
@@ -42,7 +42,7 @@ function keyUp(evt){
     if(keyPos == 'd'){
         moveRight = false;
     }
-    if(keyPos == 'w' && onGround){
+    if(keyPos == 'w'){
         jump = false;
     }
 }
@@ -60,7 +60,7 @@ class Player {
         }
         this.move = function(){
             if(moveLeft && this.x + this.speedX > 0){
-                this.x -= 3;
+                this.speedX = -3;
             } else if(moveRight && this.x + this.width < canvasWidth) {
                 this.speedX = 3;
             } else {
@@ -68,16 +68,10 @@ class Player {
             }
             
             if(this.y + this.height < canvasHeight){
-                this.speedY += 2;
-                onGround = false;
+                this.speedY = 2;
             } else if(this.y - this.height >= canvasHeight){
                 this.speedY = 0;
                 this.y = canvasHeight - this.height;
-                onGround = true;
-            }
-
-            if(this.y = canvasHeight - this.height && jump) {
-                this.speedY -= 10;
             }
             
             this.x += this.speedX;
