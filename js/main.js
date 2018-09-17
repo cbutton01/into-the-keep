@@ -20,6 +20,7 @@ function drawRect(x, y, width, height, color ) {
 
 function keyDown(evt){
     let keyPos = evt.key;
+    
     if(keyPos == 'a') {
         moveLeft = true;
     }
@@ -49,27 +50,36 @@ class Player {
         this.width = 10;
         this.height = 20;
         this.draw = function(){
-            drawRect(this.x, this.y, this.width, this.height, 'white');
+            drawRect(this.x, this.y, this.width, this.height, 'red');
         }
         this.move = function(){
-            if(moveLeft){
+            if(moveLeft && this.x + this.speedX > 0){
                 this.x -= 3;
-            } else if(moveRight) {
+            } else if(moveRight && this.x + this.width < canvasWidth) {
                 this.speedX = 3;
             } else {
                 this.speedX = 0;
             }
             
+            if(this.y + this.height < canvasHeight){
+                this.speedY += .5;
+            } else if(this.y - this.height >= canvasHeight){
+                this.speedY = 0;
+                this.y = canvasHeight - this.height;
+            }
+            
             this.x += this.speedX;
+            this.y += this.speedY;
         }
     }
 }
 
+let player = new Player(playerX, playerY, 0, 0 );
+
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new Player(playerX - 5, playerY - 10, 0, 0 );
-    player.draw();
     player.move();
+    player.draw();
     requestAnimationFrame(update);
 }
