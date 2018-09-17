@@ -3,7 +3,7 @@ let canvasContext = canvas.getContext('2d');
 let canvasWidth = canvas.width = 800;
 let canvasHeight = canvas.height = 600;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
-let moveLeft = moveRight = jump = false;
+let moveLeft = moveRight = jump = onGround = false;
 
 
 
@@ -27,6 +27,9 @@ function keyDown(evt){
     if(keyPos == 'd'){
         moveRight = true;
     }
+    if(keyPos == 'w'){
+        jump = true;
+    }
     
     
 }
@@ -38,6 +41,9 @@ function keyUp(evt){
     }
     if(keyPos == 'd'){
         moveRight = false;
+    }
+    if(keyPos == 'w' && onGround){
+        jump = false;
     }
 }
 
@@ -62,10 +68,16 @@ class Player {
             }
             
             if(this.y + this.height < canvasHeight){
-                this.speedY += .5;
+                this.speedY += 2;
+                onGround = false;
             } else if(this.y - this.height >= canvasHeight){
                 this.speedY = 0;
                 this.y = canvasHeight - this.height;
+                onGround = true;
+            }
+
+            if(this.y = canvasHeight - this.height && jump) {
+                this.speedY -= 10;
             }
             
             this.x += this.speedX;
