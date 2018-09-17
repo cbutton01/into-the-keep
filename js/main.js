@@ -41,20 +41,19 @@ function keyUp(evt){
 }
 
 class Player {
-    constructor(x, y, playerSpeedX, playerSpeedY) {
+    constructor(x, y, speedX, speedY) {
         this.x = x;
         this.y = y;
-        this.speedX = playerSpeedX;
-        this.speedY = playerSpeedY;
+        this.speedX = speedX;
+        this.speedY = speedY;
         this.width = 10;
         this.height = 20;
         this.draw = function(){
             drawRect(this.x, this.y, this.width, this.height, 'white');
         }
         this.move = function(){
-            // debugger
             if(moveLeft){
-                this.speedX = -3;
+                this.x -= 3;
             } else if(moveRight) {
                 this.speedX = 3;
             } else {
@@ -69,7 +68,7 @@ class Player {
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    let player = new Player(400 - 5, 300 - 10, 0, 0 );
+    let player = new Player(playerX - 5, playerY - 10, 0, 0 );
     player.draw();
     player.move();
     requestAnimationFrame(update);
