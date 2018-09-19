@@ -1,10 +1,10 @@
-let canvas = document.getElementById("game");
+;let canvas = document.getElementById("game");
 let canvasContext = canvas.getContext('2d');
 let canvasWidth = canvas.width = 800;
 let canvasHeight = canvas.height = 600;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 let moveLeft = moveRight = jump = onGround = false;
-
+let gravity = .1;
 
 
 window.onload = function(){
@@ -69,19 +69,26 @@ class Player {
             
             if(this.y + this.height < canvasHeight){
                 this.speedY = 10;
+                onGround = false;
             } else if(this.y + this.height >= canvasHeight){
                 this.speedY = 0;
                 this.y = canvasHeight - this.height;
                 onGround = true;
             }
+
+            if(this.y <= canvasHeight - 100){
+                jump = false;
+            }
             
             if (jump) {
-                this.speedY = -5;
+                this.speedY = -10;
                 onGround = false;
             }
 
             this.x += this.speedX;
             this.y += this.speedY;
+            // console.log(this.speedY);
+            
             
         }
     }
