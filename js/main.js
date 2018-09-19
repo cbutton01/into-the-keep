@@ -85,7 +85,7 @@ class Player {
                 onGround = true;
             }
 
-            if(this.y <= canvasHeight - 100){
+            if(this.y <= canvasHeight - 150){
                 jump = false;
             }
             
