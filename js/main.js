@@ -1,4 +1,4 @@
-;let canvas = document.getElementById("game");
+let canvas = document.getElementById("game");
 let canvasContext = canvas.getContext('2d');
 let canvasWidth = canvas.width = 800;
 let canvasHeight = canvas.height = 600;
@@ -6,6 +6,13 @@ let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 let moveLeft = moveRight = jump = onGround = false;
 let gravity = .1;
 
+const PLAYER_PIC = new Image(64, 64);
+PLAYER_PIC.src = 'assets/img/character01-test.png';
+let playerPicLoaded = false;
+
+PLAYER_PIC.onload = function(){
+    playerPicLoaded = true;
+}
 
 window.onload = function(){
     update();
@@ -56,7 +63,9 @@ class Player {
         this.width = 10;
         this.height = 20;
         this.draw = function(){
-            drawRect(this.x, this.y, this.width, this.height, 'red');
+            if(playerPicLoaded){
+                canvasContext.drawImage(PLAYER_PIC, playerX - (PLAYER_PIC.width/2), playerY + PLAYER_PIC.height);
+            }
         }
         this.move = function(){
             if(moveLeft && this.x + this.speedX > 0){
