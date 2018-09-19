@@ -68,14 +68,21 @@ class Player {
             }
             
             if(this.y + this.height < canvasHeight){
-                this.speedY = 2;
-            } else if(this.y - this.height >= canvasHeight){
+                this.speedY = 10;
+            } else if(this.y + this.height >= canvasHeight){
                 this.speedY = 0;
                 this.y = canvasHeight - this.height;
+                onGround = true;
             }
             
+            if (jump) {
+                this.speedY = -5;
+                onGround = false;
+            }
+
             this.x += this.speedX;
             this.y += this.speedY;
+            
         }
     }
 }
