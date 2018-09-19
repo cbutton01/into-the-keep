@@ -60,11 +60,11 @@ class Player {
         this.y = y;
         this.speedX = speedX;
         this.speedY = speedY;
-        this.width = 10;
-        this.height = 20;
+        this.width = PLAYER_PIC.width;
+        this.height = PLAYER_PIC.height;
         this.draw = function(){
             if(playerPicLoaded){
-                canvasContext.drawImage(PLAYER_PIC, playerX - (PLAYER_PIC.width/2), playerY + PLAYER_PIC.height);
+                canvasContext.drawImage(PLAYER_PIC, this.x, this.y);
             }
         }
         this.move = function(){
