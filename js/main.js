@@ -105,10 +105,18 @@ class Player {
 
 let player = new Player(playerX, playerY, 0, 0 );
 
+function drawAll(){
+    player.draw();
+}
+
+function moveAll(){
+    player.move();
+}
+
 function update(){
     canvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     drawRect(0,0, canvasWidth, canvasHeight, 'black');
-    player.move();
-    player.draw();
+    drawAll();
+    moveAll();
     requestAnimationFrame(update);
 }
