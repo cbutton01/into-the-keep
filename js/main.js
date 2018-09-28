@@ -5,6 +5,26 @@ let canvasHeight = canvas.height = 600;
 let playerX = canvasWidth/ 2, playerY = canvasHeight/ 2;
 let moveLeft = moveRight = jump = onGround = false;
 let gravity = .1;
+let map = {
+    rows: 10,
+    column: 10,
+    tileSize: 20,
+    tiles: [
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    1,1,1,1,0,0,1,1,1,1,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0
+],
+getTile: function (col, row) {
+    return this.tiles[row * map.cols + col];
+    }
+};
 
 const PLAYER_PIC = new Image(64, 64);
 PLAYER_PIC.src = 'assets/img/character01-test.png';
@@ -107,6 +127,14 @@ let player = new Player(playerX, playerY, 0, 0 );
 
 function drawAll(){
     player.draw();
+    for (var column = 0; column < map.columns; column++) {
+        for (var row = 0; row < map.rows; row++) {
+          var tile = map.getTile(column, row);
+          var x = column * map.tileSize;
+          var y = row * map.tileSize;
+          drawRect(x,y, tileSize,tileSize, 'white');
+        }
+      }
 }
 
 function moveAll(){
