@@ -16,16 +16,6 @@ let player = new Player(playerX, playerY, 0, 0 );
 
 function drawAll(){
     player.draw();
-    for (var column = 0; column < map.columns; column++) {
-        for (var row = 0; row < map.rows; row++) {
-          var tile = map.getTile(column, row);
-          var x = column * map.tileSize;
-          var y = row * map.tileSize;
-          if(tile === 1){
-              drawRect(x,y, tileSize,tileSize, 'white');
-          }
-        }
-      }
 }
 
 function moveAll(){
