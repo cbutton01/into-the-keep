@@ -7,4 +7,4 @@
 * `d` to move right
 * `w` to jump
 
-to play: https://cbutton01.github.io/metroidvania/
+to play: https://cbutton01.github.io/into-the-keep/
