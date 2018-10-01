@@ -27,7 +27,7 @@ for(var y = 0; y < mapH; y++)
             switch(gameMap[((y*mapW)+x)])
 			{
 				case 1:
-                    drawRect(x*tileW,y*tileH, tileW, tileH, 'red')
+                    platform = drawRect(x*tileW,y*tileH, tileW, tileH, 'red')
 					break;
                 default:
                     null

@@ -12,23 +12,12 @@ class Player {
             }
         };
 
-        this.checkGround = function() {
-            for (var y = 0; y < mapH; y++) {
-                for (var x = 0; x < mapW; x++) {
-                    if (
-                        this.y >= y * tileH - this.height &&
-                        this.x <= x * tileW
-                    ) {
-                        onGround = true;
-                    } else {
-                        onGround = false;
-                    }
-                }
-            }
-        };
+        // this.checkGround = function() {
+        //     if(this.y >=)
+        // };
 
         this.move = function() {
-            this.checkGround();
+            // this.checkGround();
 
             if (moveLeft && this.x + this.speedX > 0) {
                 this.speedX = -3;
@@ -38,21 +27,17 @@ class Player {
                 this.speedX = 0;
             }
 
-            if (this.y + this.height < canvasHeight && !onGround) {
+            if (!onGround) {
                 this.speedY = 10;
-                onGround = false;
             } else if (onGround) {
                 this.speedY = 0;
             }
 
             if (jump) {
                 this.speedY = -10;
-                onGround = false;
-            }
-
-            if (!onGround) {
                 this.speedY += gravity;
             }
+
             this.x += this.speedX;
             this.y += this.speedY;
         };
