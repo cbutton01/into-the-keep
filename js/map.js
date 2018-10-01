@@ -30,8 +30,7 @@ for(var y = 0; y < mapH; ++y)
                     drawRect(x*tileW,y*tileH, tileW, tileH, 'red')
 					break;
                 default:
-                    drawRect(x*tileW,y*tileH, tileW, tileH, 'black')
-					
+                    null
 			}
         }
     }

@@ -3,7 +3,6 @@ let canvasContext = canvas.getContext('2d');
 let canvasWidth = canvas.width = 800;
 let canvasHeight = canvas.height = 600;
 let playerX = canvasWidth/ 2, playerY = 20;
-let moveLeft = moveRight = jump = onGround = false;
 let gravity = .1;
 
 window.onload = function(){

@@ -1,3 +1,5 @@
+let moveLeft = moveRight = jump = onGround = false;
+
 function keyDown(evt){
     let keyPos = evt.key;
     
