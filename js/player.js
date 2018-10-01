@@ -12,6 +12,17 @@ class Player {
             }
         }
         this.move = function(){
+
+            for(let i=0;i<gameMap.length;i++) {              
+                if(this.y === gameMap[i]) {
+                    if(gameMap[i] === 1){
+                        this.y=gameMap[i].y;
+                        onGround = true;
+                        console.log('onGround');
+                    }
+                }
+            }
+
             if(moveLeft && this.x + this.speedX > 0){
                 this.speedX = -3;
             } else if(moveRight && this.x + this.width < canvasWidth) {
@@ -20,7 +31,7 @@ class Player {
                 this.speedX = 0;
             }
             
-            if(this.y + this.height < canvasHeight){
+            if(this.y + this.height < canvasHeight && !onGround){
                 this.speedY = 10;
                 onGround = false;
             } else if(this.y + this.height >= canvasHeight){
