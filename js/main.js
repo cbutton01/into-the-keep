@@ -16,6 +16,7 @@ let player = new Player(playerX, playerY, 0, 0 );
 
 function drawAll(){
     player.draw();
+    drawMap();
 }
 
 function moveAll(){
