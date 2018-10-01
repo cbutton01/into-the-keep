@@ -15,17 +15,13 @@ class Player {
         this.checkGround = function() {
             for (var y = 0; y < mapH; y++) {
                 for (var x = 0; x < mapW; x++) {
-                    switch (gameMap[y * mapW + x]) {
-                        case 1:
-                            if (
-                                this.y >= y * tileH - this.height &&
-                                this.x == x * tileW
-                            ) {
-                                onGround = true;
-                            }
-                            break;
-                        default:
-                            null;
+                    if (
+                        this.y >= y * tileH - this.height &&
+                        this.x <= x * tileW
+                    ) {
+                        onGround = true;
+                    } else {
+                        onGround = false;
                     }
                 }
             }
@@ -48,10 +44,6 @@ class Player {
             } else if (onGround) {
                 this.speedY = 0;
             }
-
-            // if(this.y <= canvasHeight - 150){
-            //     jump = false;
-            // }
 
             if (jump) {
                 this.speedY = -10;

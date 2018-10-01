@@ -1,28 +1,28 @@
-let moveLeft = moveRight = jump = onGround = false;
+let moveLeft = (moveRight = jump = onGround = false);
 
-function keyDown(evt){
+function keyDown(evt) {
     let keyPos = evt.key;
-    
-    if(keyPos == 'a') {
+
+    if (keyPos == "a") {
         moveLeft = true;
     }
-    if(keyPos == 'd'){
+    if (keyPos == "d") {
         moveRight = true;
     }
-    if(keyPos == 'w' && onGround){
+    if (keyPos == "w" && onGround) {
         jump = true;
     }
 }
 
-function keyUp(evt){
+function keyUp(evt) {
     let keyPos = evt.key;
-    if(keyPos == 'a'){
+    if (keyPos == "a") {
         moveLeft = false;
     }
-    if(keyPos == 'd'){
+    if (keyPos == "d") {
         moveRight = false;
     }
-    if(keyPos == 'w'){
+    if (keyPos == "w") {
         jump = false;
     }
 }
