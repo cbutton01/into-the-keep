@@ -1,88 +1,87 @@
 player = {
+
     sprite: PLAYER_PIC,
-    width: PLAYER_PIC.width,
-    height: PLAYER_PIC.height,
-    old_x: 160,
-    old_y: 160,
-    velocity_x: 0,
-    velocity_y: 0,
-    x: 400,
-    y: 300,
-    jumping: false
-};
+    jumping:   true,
+    height:    world.tile_size,
+    width:     world.tile_size,
+    x:         world.tile_size * 4 - world.tile_size * 0.5 + 2,
+    x_old:     world.tile_size * 4 - world.tile_size * 0.5 + 2,
+    x_velocity:0,
+    y:         world.tile_size * 4,
+    y_old:     world.tile_size * 8,
+    y_velocity:0,
+
+  };
 
 function drawPlayer() {
     if (playerPicLoaded) {
         canvasContext.drawImage(player.sprite, player.x, player.y);
     }
+    // drawRect(player.x,player.y, player.width,player.height, 'red');
+    // drawRect(player.x,player.y ,2,2, 'white');
+    // drawRect(player.x + player.width - 2,player.y ,2,2, 'white');
+    // drawRect(player.x,player.y + player.height - 2 ,2,2, 'white');
+    // drawRect(player.x + player.width - 2,player.y + player.height -2 ,2,2, 'white');
 }
 
 function movePlayer() {
-    if (controller.up && player.jumping == false) {
-        player.velocity_y -= 25;
+    if (controller.up && !player.jumping) {
+
         player.jumping = true;
-    }
-
-    if (controller.left) {
-        player.velocity_x -= 0.5;
-    }
-
-    if (controller.right) {
-        player.velocity_x += 0.5;
-    }
-
-    player.velocity_y += 1.5;
-    player.x += player.velocity_x;
-    player.y += player.velocity_y;
-    player.velocity_x *= 0.9;
-    player.velocity_y *= 0.9;
-
-    if (player.x < 0) {
-
-        player.velocity_x = 0;
-        player.old_x = player.x = 0;
-
-      } else if (player.x + player.width > canvasWidth) {
-
-        player.velocity_x = 0;
-        player.old_x = player.x = canvasWidth - player.width;
+        player.y_velocity = -30;
 
       }
+
+      if (controller.left) {
+
+        player.x_velocity -= 0.5;
+
+      }
+
+      if (controller.right) {
+
+        player.x_velocity += 0.5;
+
+      }
+
+      player.x_old = player.x;
+      player.y_old = player.y;
+
+      player.y_velocity += 1;
+
+      player.x += player.x_velocity;
+      player.y += player.y_velocity;
+
+      player.x_velocity *= 0.9;
+      player.y_velocity *= 0.9;
+
+      // Collision detection and response handling with the walls:
 
       if (player.y < 0) {
 
-        player.velocity_y = 0;
-        player.old_y = player.y = 0;
+        player.y_velocity = 0;
+        player.y = 0;
 
       } else if (player.y + player.height > canvasHeight) {
 
-        player.velocity_y = 0;
-        player.old_y = player.y = canvasHeight - player.height;
+        player.jumping = false;
+        player.y_velocity = 0;
+        player.y = canvasHeight - player.height - 0.001;
 
       }
 
-      // calculate the player's x and y tile position in the tile map
-      var tile_x = Math.floor((player.x + player.width * 0.5) / world.tile_size);
-      var tile_y = Math.floor((player.y + player.height) / world.tile_size);
-      // get the value at the tile position in the map
-      var value_at_index = world.map[tile_y * world.columns + tile_x];
+      if (player.x < 0) {
 
-      // if it's not an empty tile, we need to do narrow phase collision detection and possibly response!
-      if (value_at_index != 0) {
+        player.x_velocity = 0;
+        player.x = 0;
 
-        // simply call one of the routing functions in the collision object and pass
-        // in values for the collision tile's location in grid/map space
-        world.collision[value_at_index](player, tile_y, tile_x);
+      } else if (player.x + player.width > canvasWidth) {
+
+        player.x_velocity = 0;
+        player.x = canvasWidth - player.width - 0.001;
 
       }
 
-      tile_x = Math.floor((player.x + player.width * 0.5) / world.tile_size);
-      tile_y = Math.floor((player.y + player.height) / world.tile_size);
-      value_at_index = world.map[tile_y * world.columns + tile_x];
-
-      if (value_at_index != 0) {
-
-        world.collision[value_at_index](player, tile_y, tile_x);
-
-      }
+      // Handle collision with world AFTER moving the player.
+      world.collision.handleCollision(player, world);
 }
