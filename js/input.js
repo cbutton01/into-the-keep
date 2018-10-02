@@ -1,29 +1,22 @@
-let moveLeft = false;
-let moveRight = false;
+controller = {
+    left: false,
+    right: false,
+    up: false,
+    keyListener: function(event) {
+        let keyState = event.type == "keydown" ? true : false;
 
-function keyDown(evt) {
-    let keyPos = evt.key;
-
-    if (keyPos == "a") {
-        moveLeft = true;
+        switch (event.keyCode) {
+            case 65: //left
+                controller.left = keyState;
+                break;
+            case 87: //up
+                controller.up = keyState;
+                break;
+            case 68: //right
+                controller.right = keyState;
+                break;
+            default:
+                null;
+        }
     }
-    if (keyPos == "d") {
-        moveRight = true;
-    }
-    if (keyPos == "w") {
-        player.jumping = true;
-    }
-}
-
-function keyUp(evt) {
-    let keyPos = evt.key;
-    if (keyPos == "a") {
-        moveLeft = false;
-    }
-    if (keyPos == "d") {
-        moveRight = false;
-    }
-    if (keyPos == "w") {
-        player.jumping = false;
-    }
-}
+};

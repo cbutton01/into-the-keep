@@ -8,8 +8,8 @@ let gravity = 0.9;
 
 window.onload = function() {
     update();
-    document.addEventListener("keydown", keyDown);
-    document.addEventListener("keyup", keyUp);
+    document.addEventListener("keydown", controller.keyListener);
+    document.addEventListener("keyup", controller.keyListener);
 };
 
 function drawAll() {

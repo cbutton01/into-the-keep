@@ -18,13 +18,22 @@ function drawPlayer() {
 }
 
 function movePlayer() {
-    if (moveLeft) {
-        player.velocity_x -= .1;
-    } else if (moveRight) {
-        player.velocity_x += .1;
-    } else {
-        player.velocity_x = 0;
+    if (controller.up && player.jumping == false) {
+        player.velocity_y -= 20;
+        player.jumping = true;
     }
 
+    if (controller.left) {
+        player.velocity_x -= 0.5;
+    }
+
+    if (controller.right) {
+        player.velocity_x += 0.5;
+    }
+
+    player.velocity_y += 1.5;
     player.x += player.velocity_x;
+    player.y += player.velocity_y;
+    player.velocity_x *= 0.9;
+    player.velocity_y *= 0.9;
 }
