@@ -31,7 +31,7 @@ function movePlayer() {
         player.velocity_x += 0.5;
     }
 
-    player.velocity_y += 1.5;
+    //player.velocity_y += 1.5;
     player.x += player.velocity_x;
     player.y += player.velocity_y;
     player.velocity_x *= 0.9;
