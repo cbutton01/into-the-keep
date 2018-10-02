@@ -14,7 +14,7 @@ world = {
         1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1
     ],
-    //collision is placed inside the world object because the tile numbers are directly related to how the collisions are detcted
+    //collision is placed inside the world object because the tile numbers are directly related to how the collisions are detected
     collision: {
 
         offset:0.001,
