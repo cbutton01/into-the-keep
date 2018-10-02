@@ -12,12 +12,20 @@ class Player {
             }
         };
 
-        // this.checkGround = function() {
-        //     if(this.y >=)
-        // };
+        this.checkGround = function() {
+            for (var y = 0; y < mapH; y++) {
+                for (var x = 0; x < mapW; x++) {
+                    if (this.y >= y * mapW + x - this.height && this.x ) {
+                        onGround = true;
+                    } else {
+                        onGround = false;
+                    }
+                }
+            }
+        };
 
         this.move = function() {
-            // this.checkGround();
+            this.checkGround();
 
             if (moveLeft && this.x + this.speedX > 0) {
                 this.speedX = -3;
