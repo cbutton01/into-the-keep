@@ -12,15 +12,13 @@ window.onload = function() {
     document.addEventListener("keyup", keyUp);
 };
 
-let player = new Player(playerX, playerY, 0, 0);
-
 function drawAll() {
     drawMap();
-    player.draw();
+    drawPlayer();
 }
 
 function moveAll() {
-    player.move();
+    movePlayer();
 }
 
 function update() {

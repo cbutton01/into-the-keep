@@ -1,4 +1,5 @@
-let moveLeft = (moveRight = jump = onGround = false);
+let moveLeft = false;
+let moveRight = false;
 
 function keyDown(evt) {
     let keyPos = evt.key;
@@ -9,8 +10,8 @@ function keyDown(evt) {
     if (keyPos == "d") {
         moveRight = true;
     }
-    if (keyPos == "w" && onGround) {
-        jump = true;
+    if (keyPos == "w") {
+        player.jumping = true;
     }
 }
 
@@ -23,6 +24,6 @@ function keyUp(evt) {
         moveRight = false;
     }
     if (keyPos == "w") {
-        jump = false;
+        player.jumping = false;
     }
 }

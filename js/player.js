@@ -1,53 +1,30 @@
-class Player {
-    constructor(x, y, speedX, speedY) {
-        this.x = x;
-        this.y = y;
-        this.speedX = speedX;
-        this.speedY = speedY;
-        this.width = PLAYER_PIC.width;
-        this.height = PLAYER_PIC.height;
-        this.draw = function() {
-            if (playerPicLoaded) {
-                canvasContext.drawImage(PLAYER_PIC, this.x, this.y);
-            }
-        };
+player = {
+    sprite: PLAYER_PIC,
+    width: PLAYER_PIC.width,
+    height: PLAYER_PIC.height,
+    old_x: 160,
+    old_y: 160,
+    velocity_x: 0,
+    velocity_y: 0,
+    x: 400,
+    y: 300,
+    jumping: false
+};
 
-        this.checkGround = function() {
-            for (var y = 0; y < mapH; y++) {
-                for (var x = 0; x < mapW; x++) {
-                    if (this.y >= y * mapW + x - this.height && this.x ) {
-                        onGround = true;
-                    } else {
-                        onGround = false;
-                    }
-                }
-            }
-        };
-
-        this.move = function() {
-            this.checkGround();
-
-            if (moveLeft && this.x + this.speedX > 0) {
-                this.speedX = -3;
-            } else if (moveRight && this.x + this.width < canvasWidth) {
-                this.speedX = 3;
-            } else {
-                this.speedX = 0;
-            }
-
-            if (!onGround) {
-                this.speedY = 10;
-            } else if (onGround) {
-                this.speedY = 0;
-            }
-
-            if (jump) {
-                this.speedY = -10;
-                this.speedY += gravity;
-            }
-
-            this.x += this.speedX;
-            this.y += this.speedY;
-        };
+function drawPlayer() {
+    if (playerPicLoaded) {
+        canvasContext.drawImage(player.sprite, player.x, player.y);
     }
+}
+
+function movePlayer() {
+    if (moveLeft) {
+        player.velocity_x -= .1;
+    } else if (moveRight) {
+        player.velocity_x += .1;
+    } else {
+        player.velocity_x = 0;
+    }
+
+    player.x += player.velocity_x;
 }
