@@ -2,11 +2,11 @@ world = {
     columns: 13,
     rows: 10,
     tile_size: 64,
-    map: [
+    map: [ //be careful with double digit tiles, they can throw off the layout
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,6,0,0,0,
+        0,0,0,0,0,0,0,0,0,7,0,0,0,
         0,0,0,6,0,0,14,0,0,0,0,0,0,
         0,0,0,0,0,8,1,13,0,0,0,0,1,
         0,0,0,0,8,0,0,0,13,0,0,0,0,
@@ -19,35 +19,35 @@ world = {
 
         offset:0.001,
 
-        /* A platform tile with a flat top surface. */
+        // floor
         1:function(object, column, row) {
 
           this.collideTop(object, row);
 
         },
 
-        /* A platform tile with a flat right surface. */
+        //left wall
         2:function(object, column, row) {
 
           this.collideRight(object, column);
 
         },
 
-        /* A platform tile with a flat bottom surface. */
+        //ceiling
         3:function(object, column, row) {
 
           this.collideBottom(object, row);
 
         },
 
-        /* A platform tile with a flat left surface. */
+        //right wall
         4:function(object, column, row) {
 
           this.collideLeft(object, column);
 
         },
 
-        /* A platform tile with flat top, right, bottom, and left surfaces. */
+        // solid block
         5:function(object, column, row) {
 
           if (this.collideTop(object, row)) return;
@@ -82,9 +82,7 @@ world = {
 
         },
 
-        /* A slope tile starting in the bottom left corner and rising to the top right
-        corner of the tile space that only pushes objects up out of it. This is not
-        a platform tile, it is a solid tile. */
+        // solid left ramp
         8:function(object, column, row) {
 
           let current_x = object.x + object.width - column * world.tile_size;
@@ -107,40 +105,35 @@ world = {
 
         },
 
-        /* A slope tile starting in the bottom left corner and rising to the top right
-        corner of the tile space. */
+        // non solid left ramp
         9:function(object, column, row) {
 
           this.collideSlopeTop(object, column, row, -1, world.tile_size);
 
         },
 
-        /* A slope tile starting in the top left corner and declining to the bottom
-        right corner of the tile space. */
+        // non solid right ramp
         10:function(object, column, row) {
 
           this.collideSlopeTop(object, column, row, 1, 0);
 
         },
 
-        /* A half height slope tile starting in the bottom left corner and rising to
-        the middle right side of the tile space. */
+        //small right ramp
         11:function(object, column, row) {
 
           this.collideSlopeTop(object, column, row, -0.5, world.tile_size);
 
         },
 
-        /* A half height slope tile starting in the middle left side and declining
-        to the bottom right corner of the tile space. */
+        // small left down ramp
         12:function(object, column, row) {
 
           this.collideSlopeTop(object, column, row, 0.5, world.tile_size * 0.5);
 
         },
 
-        /* A slope tile starting in the top left corner and declining to the bottom
-        right corner of the tile space, with flat surfaces on the bottom and left sides. */
+        // solid left facing ramp
         13:function(object, column, row) {
 
           if (this.collideSlopeTop(object, column, row, 1, 0)) return;
@@ -160,7 +153,7 @@ world = {
 
         },
 
-        /* A half height curve tile that simply pushes the object up when collision is detected. */
+        // a semi circle
         14:function(object, column, row) {
 
 
