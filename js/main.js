@@ -15,7 +15,7 @@ window.onload = function() {
 function drawAll() {
     canvasContext.save();
     canvasContext.translate(-player.x + canvasWidth/2 , -player.y + canvasHeight/ 2 );
-    canvasContext.scale(1,1);
+    // canvasContext.scale(2,2;)
 
     drawMap();
     drawPlayer();
