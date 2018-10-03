@@ -28,7 +28,7 @@ function movePlayer() {
     if (controller.up && !player.jumping) {
 
         player.jumping = true;
-        player.y_velocity = -30;
+        player.y_velocity = -27;
 
       }
 
@@ -52,7 +52,7 @@ function movePlayer() {
       player.x += player.x_velocity;
       player.y += player.y_velocity;
 
-      player.x_velocity *= 0.9;
+      player.x_velocity *= 0.89;
       player.y_velocity *= 0.9;
 
       // Collision detection and response handling with the walls:
