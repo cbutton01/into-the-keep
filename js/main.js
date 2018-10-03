@@ -13,8 +13,14 @@ window.onload = function() {
 };
 
 function drawAll() {
+    canvasContext.save();
+    canvasContext.translate(-player.x + canvasWidth/2 , -player.y + canvasHeight/ 2 );
+    canvasContext.scale(1,1);
+
     drawMap();
     drawPlayer();
+
+    canvasContext.restore();
 }
 
 function moveAll() {

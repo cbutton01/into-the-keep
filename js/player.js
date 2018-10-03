@@ -70,17 +70,17 @@ function movePlayer() {
 
       }
 
-      if (player.x < 0) {
+      // if (player.x < 0) {
 
-        player.x_velocity = 0;
-        player.x = 0;
+      //   player.x_velocity = 0;
+      //   player.x = 0;
 
-      } else if (player.x + player.width > canvasWidth) {
+      // } else if (player.x + player.width > canvasWidth) {
 
-        player.x_velocity = 0;
-        player.x = canvasWidth - player.width - 0.001;
+      //   player.x_velocity = 0;
+      //   player.x = canvasWidth - player.width - 0.001;
 
-      }
+      // }
 
       // Handle collision with world AFTER moving the player.
       world.collision.handleCollision(player, world);
