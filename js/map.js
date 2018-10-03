@@ -6,13 +6,13 @@ world = {
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,5,0,0,0,
-        0,0,0,0,0,0,5,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,6,0,0,0,
+        0,0,0,6,0,0,6,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,8,5,
-        0,0,5,0,0,0,0,0,0,0,8,5,0,
+        0,0,0,0,0,0,0,0,0,0,8,5,0,
         0,0,0,0,0,0,0,0,0,8,5,0,0,
         1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1
+        0,0,0,0,0,0,0,0,0,0,0,0,0
     ],
     //collision is placed inside the world object because the tile numbers are directly related to how the collisions are detected
     collision: {
@@ -337,15 +337,14 @@ world = {
       }
     };
 
+
 function drawMap() {
     for (let index = world.map.length - 1; index > -1; --index) {
-        canvasContext.fillStyle =
-            world.map[index] > 0 ? "#0099" + world.map[index] + "f" : "#303840";
-        canvasContext.fillRect(
-            (index % world.columns) * world.tile_size,
-            Math.floor(index / world.columns) * world.tile_size,
-            world.tile_size,
-            world.tile_size
-        );
+        let value = world.map[index] - 1;
+        let sourceX = (value % 14) * 64;
+        let sourceY = Math.floor(value / 14) * 64;
+        let destX = (index % world.columns) * 64;
+        let destY = Math.floor(index / world.columns) * 64;
+        canvasContext.drawImage(TILE_SET_TEST, sourceX,sourceY, 64,64, destX,destY, 64,64);
     }
 }

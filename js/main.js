@@ -23,7 +23,7 @@ function moveAll() {
 
 function update() {
     canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-    drawRect(0, 0, canvasWidth, canvasHeight, "black");
+    drawRect(0, 0, canvasWidth, canvasHeight, "#494949");
     drawAll();
     moveAll();
     requestAnimationFrame(update);

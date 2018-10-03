@@ -3,7 +3,7 @@ player = {
     sprite: PLAYER_PIC,
     jumping:   true,
     height:    world.tile_size,
-    width:     world.tile_size,
+    width:     world.tile_size/2,
     x:         world.tile_size * 4 - world.tile_size * 0.5 + 2,
     x_old:     world.tile_size * 4 - world.tile_size * 0.5 + 2,
     x_velocity:0,

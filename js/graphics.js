@@ -1,5 +1,6 @@
-const PLAYER_PIC = new Image(64, 64);
-
+const PLAYER_PIC = new Image();
+const TILE_SET_TEST = new Image();
+TILE_SET_TEST.src = "assets/img/tilesettest.png"
 PLAYER_PIC.src = "assets/img/character01-test.png";
 
 let playerPicLoaded = false;
