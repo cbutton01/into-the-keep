@@ -2,4 +2,11 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 10%;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    border: solid 1px #333;
+    box-shadow: 1px 1px 1px #222;
 }
