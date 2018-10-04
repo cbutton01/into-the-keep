@@ -12,6 +12,8 @@ controller = {
             case 87: //up
                 controller.up = keyState;
                 break;
+            case 32:
+                controller.up = keystate;
             case 68: //right
                 controller.right = keyState;
                 break;
