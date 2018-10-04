@@ -6,12 +6,31 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <canvas id="game"></canvas>
-        <script src="js/graphics.js"></script>
-        <script src="js/world.js"></script>
-        <script src="js/player.js"></script>
-        <script src="js/input.js"></script>
-        <script src="js/view.js"></script>
-        <script type="text/javascript" src="js/main.js" ></script>
+        <div>
+            <h1>Into The Keep - Demo</h1>
+            <div id="grid">
+                <div>
+                    <h3>Controls</h3>
+                    <ul>
+                        <li>A to move left</li>
+                        <li>D to move right</li>
+                        <li>W to jump</li>
+                    </ul>
+                </div>
+                <canvas id="game"></canvas>
+                <div id="description">
+                    This demo is a brief proof of concenpt of a javascript game rendered with HTML5 canvas. It has been made in 3 weeks, and is still under development. <br> Each tile is 64 pixels by 64 pixels and is cut from <a href="https://github.com/cbutton01/into-the-keep/blob/master/assets/img/tilesettest.png">this tile sheet</a>. Using a tile sheet like this allows for a faster work flow and a smaller load from asset requests on the program.  The demo is currently 100 tiles wide and 10 tiles high. The full game will be much larger than this, with enemies and bosses to fight.  The full game will be a 12 week project that I will only be able to work on in my free time.
+                    <br>
+                    <br>
+                    This demo displays object oriented programming with javascript and use of the HTML canvas API.
+                </div>
+            </div>
+            <script src="js/graphics.js"></script>
+            <script src="js/world.js"></script>
+            <script src="js/player.js"></script>
+            <script src="js/input.js"></script>
+            <script src="js/view.js"></script>
+            <script type="text/javascript" src="js/main.js" ></script>
+        </div>
     </body>
 </html>

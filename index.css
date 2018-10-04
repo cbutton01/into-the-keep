@@ -1,12 +1,38 @@
 body {
-    display: flex;
-    justify-content: center;
-    padding-top: 10%;
     margin: 0;
     overflow: hidden;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 canvas {
     border: solid 1px #333;
     box-shadow: 1px 1px 1px #222;
+}
+
+div {
+    text-align: center;
+}
+
+ul  {
+    padding-left: 40%;
+}
+
+li {
+    text-align: left;
+    list-style-type: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
+}
+
+#description {
+    width: 360px;
+    /* text-align: left; */
 }
